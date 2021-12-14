@@ -1,22 +1,17 @@
-import { lex, parse, Symbol } from './parse.ts';
-import {
-  beforeEach,
-  describe,
-  expect,
-  it,
-  run,
-} from 'https://deno.land/x/tincan/mod.ts';
+import { lex, parse } from './parse.ts';
+import { Operation } from './types.ts';
+import { describe, expect, it, run } from 'https://deno.land/x/tincan/mod.ts';
 
 describe('parser', () => {
   describe('lexing', () => {
     it('gay straight', () => {
       const vals = lex('gay straight');
-      expect(vals).toEqual([Symbol.GAY, Symbol.STRAIGHT]);
+      expect(vals).toEqual([Operation.LOOP, Operation.BRANCH]);
     });
 
     it('excludes unknown tokens', () => {
       const vals = lex('asdf asdf transfem');
-      expect(vals).toEqual([Symbol.TRANS_FEM]);
+      expect(vals).toEqual([Operation.LEFT]);
     });
 
     it('functions with empty list', () => {
@@ -27,20 +22,20 @@ describe('parser', () => {
   describe('parse', () => {
     it('handles flat lists', () => {
       expect(parse('transfem transmasc')).toEqual([
-        Symbol.TRANS_FEM,
-        Symbol.TRANS_MASC,
+        Operation.LEFT,
+        Operation.RIGHT,
       ]);
     });
 
     it('handles parenthesis', () => {
       expect(parse('gay transmasc transfem straight')).toEqual([
-        [Symbol.TRANS_MASC, Symbol.TRANS_FEM],
+        [Operation.RIGHT, Operation.LEFT],
       ]);
     });
 
     it('handles nesting', () => {
       expect(parse('gay gay transmasc straight transfem straight')).toEqual([
-        [[Symbol.TRANS_MASC], Symbol.TRANS_FEM],
+        [[Operation.RIGHT], Operation.LEFT],
       ]);
     });
 
