@@ -22,6 +22,22 @@ export class CodeGenerator {
     this.binModule.addFunctionExport('getPtr', 'getPtr');
 
     this.binModule.setMemory(1, 1, 'memory');
+
+    this.binModule.addFunctionImport(
+      'in',
+      'main',
+      'in',
+      binaryen.none,
+      binaryen.i32
+    );
+
+    this.binModule.addFunctionImport(
+      'out',
+      'main',
+      'out',
+      binaryen.i32,
+      binaryen.none
+    );
   }
 
   ptr() {
@@ -69,6 +85,18 @@ export class CodeGenerator {
             this.binModule.i32.const(1)
           );
           const store = this.binModule.i32.store8(0, 1, ptr, result);
+          wasmOps.push(store);
+          break;
+        }
+        case Operation.OUTPUT: {
+          const ptr = this.ptr();
+          const val = this.binModule.i32.load8_u(0, 1, ptr);
+          wasmOps.push(this.binModule.call('out', [val], binaryen.none));
+          break;
+        }
+        case Operation.INPUT: {
+          const input = this.binModule.call('in', [], binaryen.i32);
+          const store = this.binModule.i32.store8(0, 1, this.ptr(), input);
           wasmOps.push(store);
           break;
         }
