@@ -48,7 +48,17 @@ export class CodeGenerator {
     const wasmOps = [];
     for (const op of ops) {
       if (op instanceof Array) {
-        wasmOps.push(...this.compileOperations(op));
+        const label = Math.random()
+          .toString(36)
+          .replace(/[^a-z]+/g, '');
+        const condition = this.binModule.i32.load8_u(0, 1, this.ptr());
+        const br = this.binModule.br_if(label, condition);
+        const block = this.binModule.block(null, [
+          ...this.compileOperations(op),
+          br,
+        ]);
+        wasmOps.push(this.binModule.loop(label, block));
+        continue;
       }
 
       switch (op) {
