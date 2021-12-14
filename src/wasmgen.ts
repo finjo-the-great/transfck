@@ -44,10 +44,12 @@ export class CodeGenerator {
     return this.binModule.global.get('ptr', binaryen.i32);
   }
 
-  addOperations(ops: OperationList) {
+  compileOperations(ops: OperationList): number[] {
     const wasmOps = [];
     for (const op of ops) {
-      if (op instanceof Array) continue;
+      if (op instanceof Array) {
+        wasmOps.push(...this.compileOperations(op));
+      }
 
       switch (op) {
         case Operation.LEFT:
@@ -102,6 +104,11 @@ export class CodeGenerator {
         }
       }
     }
+    return wasmOps;
+  }
+
+  addOperations(ops: OperationList) {
+    const wasmOps = this.compileOperations(ops);
     const block = this.binModule.block('trans', wasmOps);
     this.binModule.addFunction(
       'main',

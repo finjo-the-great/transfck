@@ -5,6 +5,14 @@ const symbolMap: Record<string, Operation> = {
   straight: Operation.BRANCH,
   transfem: Operation.LEFT,
   transmasc: Operation.RIGHT,
+  he: Operation.INC,
+  him: Operation.DEC,
+  she: Operation.INC,
+  her: Operation.DEC,
+  they: Operation.INC,
+  them: Operation.DEC,
+  agender: Operation.INPUT,
+  nonbinary: Operation.OUTPUT,
 };
 
 export function lex(src: string): Operation[] {
