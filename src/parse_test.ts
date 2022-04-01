@@ -1,6 +1,6 @@
 import { lex, parse } from './parse.ts';
 import { Operation } from './types.ts';
-import { describe, expect, it, run } from 'https://deno.land/x/tincan/mod.ts';
+import { describe, expect, it, run } from './dev_deps.ts';
 
 describe('parser', () => {
   describe('lexing', () => {

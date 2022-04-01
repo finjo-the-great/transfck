@@ -1,5 +1,5 @@
 import { CodeGenerator } from './wasmgen.ts';
-import { describe, expect, it, run } from 'https://deno.land/x/tincan/mod.ts';
+import { describe, expect, it, run } from './dev_deps.ts';
 import { Operation } from './types.ts';
 import { runWasm, RunParams } from './run.ts';
 

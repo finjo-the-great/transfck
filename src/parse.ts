@@ -1,19 +1,5 @@
 import { Operation, OperationList } from './types.ts';
-
-const symbolMap: Record<string, Operation> = {
-  gay: Operation.LOOP,
-  straight: Operation.BRANCH,
-  transfem: Operation.LEFT,
-  transmasc: Operation.RIGHT,
-  he: Operation.INC,
-  him: Operation.DEC,
-  she: Operation.INC,
-  her: Operation.DEC,
-  they: Operation.INC,
-  them: Operation.DEC,
-  agender: Operation.INPUT,
-  nonbinary: Operation.OUTPUT,
-};
+import { symbolMap } from './maps.ts';
 
 export function lex(src: string): Operation[] {
   const tokens = src.split(/\s+/);
