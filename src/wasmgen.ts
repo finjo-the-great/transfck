@@ -1,4 +1,4 @@
-import binaryen from 'https://esm.sh/binaryen';
+import { binaryen } from './deps.ts';
 import { Operation, OperationList } from './types.ts';
 
 export class CodeGenerator {

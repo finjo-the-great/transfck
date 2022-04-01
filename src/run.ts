@@ -1,5 +1,3 @@
-import { init, WASI } from 'https://deno.land/x/wasm@v1.0.0/wasi.ts';
-
 export interface RunResult {
   readonly memory: Uint8Array;
   readonly ptr: number;

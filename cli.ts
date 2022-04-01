@@ -1,4 +1,4 @@
-import Denomander from 'https://deno.land/x/denomander/mod.ts';
+import { Denomander } from './src/deps.ts';
 import { parse } from './src/parse.ts';
 import { runWasm } from './src/run.ts';
 import { CodeGenerator } from './src/wasmgen.ts';
