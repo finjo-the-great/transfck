@@ -25,4 +25,6 @@ program.command('run [file]').action(async ({ file }: { file: string }) => {
   await runWasm(bin);
 });
 
-program.parse(Deno.args);
+if (import.meta.main) {
+  program.parse(Deno.args);
+}
