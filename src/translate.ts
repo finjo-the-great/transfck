@@ -11,12 +11,6 @@ export function parseBrainfuck(input: string): Operation[] {
   return outputOps;
 }
 
-const outputSymbolMap: ReadonlyMap<Operation, string> = new Map([
-  [Operation.LOOP, "gay"],
-  [Operation.BRANCH, "straight"],
-  [Operation.LEFT, "transfem"],
-]);
-
 let incDecCount = 0;
 
 function addToSrc(src: string, symbol: string) {

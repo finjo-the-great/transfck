@@ -27,7 +27,7 @@ export async function runWasm(
         }),
     },
   });
-  (instance.instance.exports.main as any)();
+  (instance.instance.exports.main as () => void)();
   const buffer = (instance.instance.exports.memory as WebAssembly.Memory)
     .buffer;
   const array = new Uint8Array(buffer);
