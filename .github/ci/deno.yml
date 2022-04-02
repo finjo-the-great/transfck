@@ -1,0 +1,23 @@
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Actions
+        uses: actions/checkout@v2
+
+      - name: Set up Deno
+        uses: denoland/setup-deno@v1.0.0
+        with:
+          deno-version: v1.x
+
+      - name: Check formatting
+        run: deno fmt --check
+
+      - name: Analyze code
+        run: deno lint
+
+      - name: Run unit and integration tests
+        run: deno test -A --coverage=cov --doc
+
+      - name: Generate coverage report
+        run: deno coverage --lcov cov > cov.lcov
