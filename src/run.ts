@@ -10,18 +10,16 @@ export interface RunParams {
 
 export async function runWasm(
   bin: Uint8Array,
-  params: RunParams = {}
+  params: RunParams = {},
 ): Promise<RunResult> {
   const instance = await WebAssembly.instantiate(bin, {
     main: {
-      out:
-        params.outFn ??
+      out: params.outFn ??
         ((c: number) => {
           const char = new Uint8Array([c]);
           Deno.stdout.writeSync(char);
         }),
-      in:
-        params.inFn ??
+      in: params.inFn ??
         (() => {
           const buffer = new Uint8Array(1);
           Deno.stdin.readSync(buffer);

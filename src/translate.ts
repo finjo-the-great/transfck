@@ -1,5 +1,5 @@
-import { Operation } from './types.ts';
-import { brainfuckSymbolMap, reverseSymbolMap } from './maps.ts';
+import { Operation } from "./types.ts";
+import { brainfuckSymbolMap, reverseSymbolMap } from "./maps.ts";
 
 export function parseBrainfuck(input: string): Operation[] {
   const outputOps: Operation[] = [];
@@ -12,19 +12,19 @@ export function parseBrainfuck(input: string): Operation[] {
 }
 
 const outputSymbolMap: ReadonlyMap<Operation, string> = new Map([
-  [Operation.LOOP, 'gay'],
-  [Operation.BRANCH, 'straight'],
-  [Operation.LEFT, 'transfem'],
+  [Operation.LOOP, "gay"],
+  [Operation.BRANCH, "straight"],
+  [Operation.LEFT, "transfem"],
 ]);
 
 let incDecCount = 0;
 
 function addToSrc(src: string, symbol: string) {
-  return src + symbol + ' ';
+  return src + symbol + " ";
 }
 
 export function translate(ops: Operation[]) {
-  let outputText = '';
+  let outputText = "";
   for (const op of ops) {
     let symbol: string | undefined;
     if (op === Operation.INC) {
@@ -32,13 +32,13 @@ export function translate(ops: Operation[]) {
       const symbolChoice = incDecCount % 3;
       switch (symbolChoice) {
         case 0:
-          symbol = 'she';
+          symbol = "she";
           break;
         case 1:
-          symbol = 'he';
+          symbol = "he";
           break;
         case 2:
-          symbol = 'they';
+          symbol = "they";
           break;
       }
     } else if (op === Operation.DEC) {
@@ -47,13 +47,13 @@ export function translate(ops: Operation[]) {
 
       switch (symbolChoice) {
         case 0:
-          symbol = 'her';
+          symbol = "her";
           break;
         case 1:
-          symbol = 'him';
+          symbol = "him";
           break;
         case 2:
-          symbol = 'them';
+          symbol = "them";
           break;
       }
     } else {

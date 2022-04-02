@@ -1,10 +1,10 @@
-import binaryen from 'https://esm.sh/binaryen';
+import binaryen from "https://esm.sh/binaryen";
 export { binaryen };
 
-export { parse as parseFlags } from 'https://deno.land/std@0.133.0/flags/mod.ts';
+export { parse as parseFlags } from "https://deno.land/std@0.133.0/flags/mod.ts";
 
-import Denomander from 'https://deno.land/x/denomander/mod.ts';
+import Denomander from "https://deno.land/x/denomander/mod.ts";
 export { Denomander };
 
-import * as path from 'https://deno.land/std@0.133.0/path/mod.ts';
+import * as path from "https://deno.land/std@0.133.0/path/mod.ts";
 export { path };

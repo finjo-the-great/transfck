@@ -1,5 +1,5 @@
-import { Operation, OperationList } from './types.ts';
-import { symbolMap } from './maps.ts';
+import { Operation, OperationList } from "./types.ts";
+import { symbolMap } from "./maps.ts";
 
 export function lex(src: string): Operation[] {
   const tokens = src.split(/\s+/);
@@ -21,7 +21,7 @@ export function parse(src: string): OperationList {
     } else if (token === Operation.BRANCH) {
       const oldList = listStack.pop();
       if (oldList === symbolList) {
-        throw new Error('This program is too straight');
+        throw new Error("This program is too straight");
       }
     } else {
       listStack[listStack.length - 1].push(token);
@@ -29,7 +29,7 @@ export function parse(src: string): OperationList {
   }
 
   if (listStack.length !== 1) {
-    throw new Error('This program is too gay');
+    throw new Error("This program is too gay");
   }
 
   return symbolList;

@@ -1,4 +1,4 @@
-import { Operation } from './types.ts';
+import { Operation } from "./types.ts";
 
 export const symbolMap: Record<string, Operation> = {
   gay: Operation.LOOP,
@@ -21,12 +21,12 @@ for (const [key, op] of Object.entries(symbolMap)) {
 }
 
 export const brainfuckSymbolMap: ReadonlyMap<string, Operation> = new Map([
-  ['>', Operation.RIGHT],
-  ['<', Operation.LEFT],
-  ['+', Operation.INC],
-  ['-', Operation.DEC],
-  ['.', Operation.OUTPUT],
-  [',', Operation.INPUT],
-  ['[', Operation.LOOP],
-  [']', Operation.BRANCH],
+  [">", Operation.RIGHT],
+  ["<", Operation.LEFT],
+  ["+", Operation.INC],
+  ["-", Operation.DEC],
+  [".", Operation.OUTPUT],
+  [",", Operation.INPUT],
+  ["[", Operation.LOOP],
+  ["]", Operation.BRANCH],
 ]);
